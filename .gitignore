@@ -1,0 +1,9 @@
+node_modules
+build
+vscode
+package-lock.json
+ssl
+
+/vscode
+/.vs
+.npmrc

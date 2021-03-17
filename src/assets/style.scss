@@ -1,0 +1,17 @@
+$color-sassy: #cc4397;
+$color-blue: #141419;
+
+.app {
+  color: $color-blue;
+  font-size: 2rem;
+  text-align: center;
+
+  .sassyDiv {
+    color: $color-sassy;
+    font-size: 3rem;
+  }
+}
+
+body{
+  background-color: $color-blue;
+}
