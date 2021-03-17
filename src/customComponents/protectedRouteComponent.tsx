@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Redirect, Route } from 'react-router';
-import loginHelper from '../helper/loginHelper';
+
 import { IRouteProps } from '../model';
 
 
@@ -12,14 +12,13 @@ class ProtecteRoute extends Route<IRouteProps>{
 
     render() {
         let redirectPath: string = '';
-        console.log(loginHelper.IsAuthenticated());
-        if (!loginHelper.IsAuthenticated()) {
+        if (!this.props.isAuthUser) {
             redirectPath = "/login";
-        } 
-        console.log('***** Redirected Path *****',redirectPath);
+        }
+        console.log('***** Redirected Path *****', redirectPath, this.props);
         if (redirectPath) {
             const renderComponent = () => (<Redirect to={{ pathname: redirectPath }} />);
-            return <Route {...this.props} component={renderComponent} render={undefined}  />;
+            return <Route {...this.props} component={renderComponent} render={undefined} />;
         } else {
             return <Route {...this.props} />;
         }
