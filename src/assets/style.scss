@@ -1,5 +1,5 @@
 $color-sassy: #cc4397;
-$color-blue: #141419;
+$color-blue: #FFFFFF;
 
 .app {
   color: $color-blue;
@@ -14,4 +14,72 @@ $color-blue: #141419;
 
 body{
   background-color: $color-blue;
+}
+
+.loginForm{
+   
+  width: 300px;
+  height: 260px;
+  padding: 20px;
+  margin: 0;
+  border-radius: 5px;
+  background: #141419;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #353535;
+}
+.loginForm .ms-TextField-wrapper{
+  margin: 10px 0px;
+}
+.floatLeft{
+  float: left;
+}
+.floatRight{
+  float: right;
+}
+.clearfix{
+  clear: both;
+}
+.w-100{
+  width: 100%;
+}
+.logoBlock{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logoBlock img{
+  max-width: 100%;
+  height: auto;
+}
+
+.loginToggle .ms-Toggle-label{
+  margin-left: 6px;
+}
+.forgotLink{
+  font-size: 12px;
+  margin: 6px 0px;
+  color: #1dcad3;
+}
+.m-10-0{
+  margin: 10px 0px;
+}
+
+.PrimaryBtn{
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #1dcad3;
+  border-radius: 30px;
+}
+
+.PrimaryBtn:hover{
+  background-color:#1dcad3;
+  color: #fff;
+}
+
+.ms-TextField-wrapper .ms-Label{
+  color: #fff;
 }

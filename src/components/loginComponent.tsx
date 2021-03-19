@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as LoginService from '../services';
-import { PrimaryButton } from '@fluentui/react'
+import { TextField, Link, PrimaryButton } from '@fluentui/react';
 import { Redirect } from 'react-router';
 
 
@@ -21,9 +21,7 @@ class LoginComponent extends React.Component<{}, ILoginState> {
         }
     }
 
-    componentDidMount() {
-        localStorage.clear();
-    }
+
 
     onLoginClick = () => {
         this.setState({ isLoading: true }, () => {
@@ -41,11 +39,25 @@ class LoginComponent extends React.Component<{}, ILoginState> {
     }
 
     render() {
-        return (<div>
-            Login
-            <PrimaryButton text="Login" onClick={this.onLoginClick} />
-
-        </div>)
+        return (
+            <div>
+                <div className="loginForm">
+                    <form autoComplete="off">
+                        <div className="logoBlock">
+                            <img src='src/logo.png' alt="logo" />
+                        </div>
+                        <TextField autoComplete="off" label='User Name' placeholder="User Name" />
+                        <TextField autoComplete="off" label='Password' type='password' placeholder="Password" />
+                        <div className="floatBlock">
+                            {/* <Toggle className="loginToggle" label="Remember" inlineLabel /> */}
+                            <Link className="floatLeft forgotLink" href="https://developer.microsoft.com/en-us/fluentui#/controls/web/link">
+                                Forgot Password ?
+                        </Link>
+                            <PrimaryButton onClick={this.onLoginClick} className="floatRight PrimaryBtn" text="Login" allowDisabledFocus />
+                        </div>
+                    </form>
+                </div>
+            </div>)
     }
 }
 
