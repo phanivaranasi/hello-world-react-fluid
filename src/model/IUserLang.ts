@@ -8,7 +8,7 @@ export interface IUser{
 export interface IUserLang{
     id:string;
     lang:string;
-    user:IUser;
+    user?:IUser;
 }
 
 

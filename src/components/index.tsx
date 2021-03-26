@@ -29,6 +29,7 @@ async function initApp() {
     );
     
     const defaultObject = await getDefaultObjectFromContainer<UserLang>(container);
+    
     ReactDOM.render(
         <BrowserRouter>
             <App />

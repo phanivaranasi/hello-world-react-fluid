@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { DataObject, DataObjectFactory } from "@fluidframework/aqueduct";
 import { SharedMap } from "@fluidframework/map";
 import { IFluidHandle } from "@fluidframework/core-interfaces";
-import { IUser, IUserLangDataModel } from "../model";
+import { IUser, IUserLang, IUserLangDataModel } from "../model";
 
 
 export class UserLang extends DataObject implements IUserLangDataModel {
@@ -10,8 +10,7 @@ export class UserLang extends DataObject implements IUserLangDataModel {
     private langMap: SharedMap;
 
     private userId: string;
-
-
+    private langId: string;
     protected async initializingFirstTime() {
         this.createdSharedMap("users");
         this.createdSharedMap("langs");
@@ -39,14 +38,19 @@ export class UserLang extends DataObject implements IUserLangDataModel {
 
         //add current user to set of collaboration
         this.addUser();
-        
+        this.addLang();
+
         //set up event listeners for ui & data changes
         this.createEventListeners(this.usersMap);
-        
+
     }
 
     public getUser = () => {
         return this.usersMap.get<IUser>(this.userId);
+    }
+
+    public getUserLang = () => {
+        return this.langMap.get<IUserLang>(this.langId);
     }
 
     public getUsers(): IUser[] {
@@ -61,6 +65,24 @@ export class UserLang extends DataObject implements IUserLangDataModel {
 
     }
 
+
+
+    public addLang = () => {
+        if (sessionStorage.getItem("langId")
+            &&
+            this.usersMap.get<IUser>(sessionStorage.getItem("langId"))
+        ) {
+            this.userId = sessionStorage.getItem("langId");
+        } else {
+            const lng: IUserLang = {
+                id: '',
+                lang: '',
+            };
+            this.userId = lng.id;
+            sessionStorage.setItem("langId", lng.id);
+            this.usersMap.set(lng.id, lng);
+        }
+    }
 
     public addUser = () => {
         if (sessionStorage.getItem("userId")
@@ -103,7 +125,7 @@ export class UserLang extends DataObject implements IUserLangDataModel {
 
 
 export const UserLangInitFactory = new DataObjectFactory(
-    "UserLang",
+    "User-Lang",
     UserLang,
     [SharedMap.getFactory()],
     {}
